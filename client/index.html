@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="description" content="Secure end-to-end encrypted VOIP communication platform with RSA-2048-OAEP encryption" />
+    <meta name="keywords" content="VOIP, encrypted communication, secure voice chat, RSA encryption" />
+    <meta name="author" content="Encrypted VOIP" />
+    <meta name="theme-color" content="#313338" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SecureVOIP" />
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="apple-touch-icon" href="/vite.svg" />
+    
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' ws: wss: http: https:;" />
+    
+    <title>SecureVOIP - Encrypted Voice Communication</title>
+  </head>
+  <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center; background: #1e1f22; color: #dbdee1; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div>
+          <h1>JavaScript Required</h1>
+          <p>This application requires JavaScript to be enabled. Please enable JavaScript in your browser settings.</p>
+        </div>
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
