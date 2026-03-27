@@ -3,8 +3,14 @@ const mongoose = require('mongoose');
 let isConnected = false;
 
 const connectDB = async () => {
+    if (!process.env.MONGODB_URI) {
+        console.warn('[MongoDB] MONGODB_URI is not set. Skipping database connection.');
+        isConnected = false;
+        return;
+    }
+
     try {
-        const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/encrypted-voip';
+        const mongoURI = process.env.MONGODB_URI;
 
         console.log('[MongoDB] Attempting to connect...');
         console.log('[MongoDB] URI:', mongoURI.replace(/\/\/.*@/, '//<credentials>@'));
@@ -34,9 +40,7 @@ const connectDB = async () => {
 
     } catch (error) {
         console.error('[MongoDB] Connection failed:', error.message);
-        console.error('[MongoDB] Make sure MongoDB is running locally or update MONGODB_URI in .env');
-        console.error('[MongoDB] For local MongoDB: run "mongod" or start MongoDB service');
-        console.error('[MongoDB] For MongoDB Atlas: update MONGODB_URI with your connection string');
+        console.error('[MongoDB] Update MONGODB_URI in environment variables with a valid connection string.');
 
         // Don't exit, allow server to start without DB for debugging
         isConnected = false;

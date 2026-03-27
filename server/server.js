@@ -31,7 +31,11 @@ const io = new Server(server, {
 });
 
 // Connect to MongoDB
-connectDB();
+if (process.env.MONGODB_URI) {
+    connectDB();
+} else {
+    console.warn('[MongoDB] MONGODB_URI is not set. Starting server without database connection.');
+}
 
 // Middleware
 app.use(cors(corsOptions));

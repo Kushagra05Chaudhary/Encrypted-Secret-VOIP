@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // Use environment variable or default to localhost
 const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api';
+const SERVER_BASE_URL = API_URL.replace('/api', '');
 
 // Log API URL for debugging
 console.log('[API] Base URL:', API_URL);
@@ -36,8 +37,8 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.code === 'ERR_NETWORK' || error.message.includes('Network Error')) {
-            console.error('[API] Network error - Is the server running on', API_URL.replace('/api', ''), '?');
-            error.message = 'Network Error: Cannot connect to server. Please ensure the backend server is running on port 5000.';
+            console.error('[API] Network error - Is the server reachable at', SERVER_BASE_URL, '?');
+            error.message = `Network Error: Cannot connect to server at ${SERVER_BASE_URL}.`;
         } else if (error.code === 'ERR_NAME_NOT_RESOLVED') {
             console.error('[API] DNS resolution error - Check API URL:', API_URL);
             error.message = 'Connection Error: Cannot resolve server address.';

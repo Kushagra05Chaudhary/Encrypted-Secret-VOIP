@@ -114,7 +114,8 @@ export const AuthProvider = ({ children }) => {
             // Provide more helpful error messages
             let errorMessage = 'Registration failed';
             if (error.code === 'ERR_NETWORK' || error.message?.includes('Network Error')) {
-                errorMessage = 'Cannot connect to server. Please ensure the backend server is running on http://localhost:5000';
+                const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                errorMessage = `Cannot connect to server at ${serverUrl}.`;
             } else if (error.code === 'ERR_NAME_NOT_RESOLVED') {
                 errorMessage = 'Server address could not be resolved. Check your network connection.';
             } else if (error.response?.data?.message) {
